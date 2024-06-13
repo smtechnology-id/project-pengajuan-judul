@@ -17,6 +17,7 @@ class Pengajuan extends Model
         'judul',
         'deskripsi',
         'status',
+        'catatan',
     ];
 
     // Relasi dengan tabel users

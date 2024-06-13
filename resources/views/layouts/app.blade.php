@@ -157,6 +157,12 @@
                                 <span> Dosen </span>
                             </a>
                         </li>
+                        <li class="side-nav-item">
+                            <a href="{{ route('admin.pengajuan') }}" class="side-nav-link">
+                                <i class="ri-home-3-line"></i>
+                                <span> Data Pengajuan </span>
+                            </a>
+                        </li>
                     @elseif (Auth::user()->role == 'kaprodi')
                     <li class="side-nav-item">
                         <a href="{{ route('kaprodi.dashboard') }}" class="side-nav-link">

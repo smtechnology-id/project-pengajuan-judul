@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('/admin/addDosen', [AdminController::class, 'addDosen'])->name('admin.addDosen');
     Route::post('/admin/updateDosen', [AdminController::class, 'updateDosen'])->name('admin.updateDosen');
     Route::get('/admin/deleteDosen/{id}', [AdminController::class, 'deleteDosen'])->name('admin.deleteDosen');
+    Route::get('/admin/Pengajuan/', [AdminController::class, 'pengajuan'])->name('admin.pengajuan');
 
     // Add more admin routes here
 });
@@ -41,6 +42,8 @@ Route::group(['middleware' => ['auth', 'role:kaprodi']], function () {
     // Routes for kaprodi
     Route::get('/kaprodi', [KaprodiController::class, 'index'])->name('kaprodi.dashboard');
     Route::get('/kaprodi/pengajuan', [KaprodiController::class, 'pengajuan'])->name('kaprodi.pengajuan');
+
+    Route::post('/kaprodi/updateStatus', [KaprodiController::class, 'updateStatus'])->name('kaprodi.updateStatus');
     // Add more kaprodi routes here
 });
 

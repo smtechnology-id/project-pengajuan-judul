@@ -23,6 +23,10 @@ class User extends Authenticatable
         'password',
         'role',
     ];
+    public function biodatamahasiswa()
+    {
+        return $this->hasOne(BiodataMahasiswa::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

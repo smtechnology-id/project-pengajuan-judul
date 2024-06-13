@@ -10,13 +10,36 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $pengajuan->judul }}</h5>
                             <p class="card-text">Deskripsi: {{ $pengajuan->deskripsi }}</p>
-                            <span
-                                class="btn 
-                            @if ($pengajuan->status == 'pending') btn-warning 
-                            @elseif($pengajuan->status == 'accepted') btn-success 
-                            @elseif($pengajuan->status == 'rejected') btn-danger @endif">
-                                {{ $pengajuan->status }}
-                            </span>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td>Status Pengajuan</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($pengajuan->status == 'pending')
+                                            <span class="text-warning">Pengajuan Sedang Ditinjau</span>
+                                        @elseif($pengajuan->status == 'accepted')
+                                            <span class="text-success">Pengajuan Telah Disetujui</span>
+                                        @elseif($pengajuan->status == 'rejected')
+                                            <span class="text-danger">Pengajuan Ditolak</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Catatan</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($pengajuan->status == 'pending')
+                                            <span class="text-warning">{{ $pengajuan->catatan }}</span>
+                                        @elseif($pengajuan->status == 'accepted')
+                                            <span class="text-success">{{ $pengajuan->catatan }}</span>
+                                        @elseif($pengajuan->status == 'rejected')
+                                            <span class="text-danger">{{ $pengajuan->catatan }}</span>
+                                        @endif
+                                    </td>
+                                </tr>
+
+                            </table>
+
                         </div>
                     </div>
                 </div>

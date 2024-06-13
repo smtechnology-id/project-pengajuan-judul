@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('judul');
             $table->text('deskripsi');
             $table->string('status')->default('pending'); // Default status
+            $table->text('catatan')->nullable();
             $table->timestamps();
 
             // Foreign key constraints
