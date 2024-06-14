@@ -21,7 +21,7 @@ class KaprodiController extends Controller
         // Validasi data yang diterima dari form
         $validatedData = $request->validate([
             'pengajuan_id' => 'required|exists:pengajuan,id', // Memastikan pengajuan_id ada dalam tabel pengajuans
-            'status' => 'required|in:pending,rejected,accepted', // Memastikan status hanya bisa 'pending', 'rejected', atau 'accepted'
+            'status' => 'required|in:pending,rejected,approved', // Memastikan status hanya bisa 'pending', 'rejected', atau 'accepted'
             'catatan' => 'nullable|string', // Catatan bisa kosong atau berisi string
         ]);
 

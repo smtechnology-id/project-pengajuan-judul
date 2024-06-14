@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dosen;
+use App\Models\Jadwal;
+use App\Models\Pengajuan;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -36,7 +38,7 @@ class AdminController extends Controller
         $request->validate([
             'id' => 'required|exists:dosens,id',
             'nama' => 'required|string|max:255',
-            'nip' => 'required|string|max:50|unique:dosens,nip,'.$request->id.',id',
+            'nip' => 'required|string|max:50|unique:dosens,nip,' . $request->id . ',id',
         ]);
 
         // Cari data dosen berdasarkan ID
@@ -68,5 +70,49 @@ class AdminController extends Controller
 
         // Redirect kembali dengan pesan sukses
         return redirect()->route('admin.dashboard')->with('success', 'Data dosen berhasil dihapus');
+    }
+
+    public function pengajuan()
+    {
+        $dosen = Dosen::all();
+        $pengajuan = Pengajuan::where('status', 'approved')->orderBy('created_at', 'desc')->get();
+        return view('admin.pengajuan', compact('pengajuan', 'dosen'));
+    }
+
+
+    public function createJadwal(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'pengajuan_id' => 'required|exists:pengajuan,id',
+            'penguji_satu' => 'required|exists:dosens,id',
+            'penguji_dua' => 'required|exists:dosens,id',
+            'penguji_tiga' => 'required|exists:dosens,id',
+            'waktu' => 'required|date',
+            'ruangan' => 'required|string|max:255',
+        ]);
+
+        // Periksa apakah status pengajuan sudah disetujui
+        $pengajuan = Pengajuan::find($request->pengajuan_id);
+        if ($pengajuan->status !== 'approved') {
+            return redirect()->back()->with('error', 'Pengajuan belum disetujui.');
+        }
+
+        // Buat jadwal baru
+        Jadwal::create([
+            'pengajuan_id' => $request->pengajuan_id,
+            'penguji_satu' => $request->penguji_satu,
+            'penguji_dua' => $request->penguji_dua,
+            'penguji_tiga' => $request->penguji_tiga,
+            'waktu' => $request->waktu,
+            'ruangan' => $request->ruangan,
+        ]);
+
+        return redirect()->back()->with('success', 'Jadwal berhasil dibuat.');
+    }
+
+    public function jadwal() {
+        $jadwal = Jadwal::all();
+        return view ('admin.jadwal', compact('jadwal'));
     }
 }

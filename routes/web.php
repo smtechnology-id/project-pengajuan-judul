@@ -34,6 +34,9 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('/admin/updateDosen', [AdminController::class, 'updateDosen'])->name('admin.updateDosen');
     Route::get('/admin/deleteDosen/{id}', [AdminController::class, 'deleteDosen'])->name('admin.deleteDosen');
     Route::get('/admin/Pengajuan/', [AdminController::class, 'pengajuan'])->name('admin.pengajuan');
+    Route::post('/admin/createJadwal/', [AdminController::class, 'createJadwal'])->name('admin.createJadwal');
+    Route::get('/admin/jadwal/', [AdminController::class, 'jadwal'])->name('admin.jadwal');
+    Route::get('admin/detailJadwal/{id}', [AdminController::class, 'detailJadwal'])->name('admin.detailJadwal');
 
     // Add more admin routes here
 });
