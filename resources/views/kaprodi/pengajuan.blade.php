@@ -1,11 +1,8 @@
 @extends('layouts.app')
 @section('content')
     <div class="row p-3">
-        <h3>Data Dosen</h3>
+        <h3>Data Pengajuan Skripsi</h3>
         <div class="table-responsive">
-            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#standard-modal">
-                Tambah Data
-            </button>
             <br>
             <table class="table table-borderless">
                 <thead>
@@ -64,12 +61,12 @@
                                                     <tr>
                                                         <td>Prodi</td>
                                                         <td>:</td>
-                                                        <td>{{ $data->user->biodatamahasiswa->program_studi }}</td>
+                                                        <td>{{ $data->user->biodatamahasiswa->programStudi->nama }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Jurusan</td>
                                                         <td>:</td>
-                                                        <td>{{ $data->user->biodatamahasiswa->jurusan }}</td>
+                                                        <td>{{ $data->user->biodatamahasiswa->programStudi->jurusan }}</td>
                                                     </tr>
                                                 </table>
                                                 <hr>
@@ -101,11 +98,14 @@
                             </td>
                             <td>
                                 @if ($data->status == 'pending')
-                                    <span class="btn btn-outline-warning"> Sedang Di Tinjau</span>
+                                    <span class="text-warning font-weight-bold" style="font-weight: bold; font-size: 16px">
+                                        Sedang Di Tinjau</span>
                                 @elseif ($data->status == 'rejected')
-                                    <span class="btn btn-outline-danger"> Pengajuan Ditolak</span>
+                                    <span class="text-danger font-weight-bold" style="font-weight: bold; font-size: 16px">
+                                        Pengajuan Ditolak</span>
                                 @elseif ($data->status == 'approved')
-                                    <span class="btn btn-outline-success"> Pengajuan Disetujui</span>
+                                    <span class="text-success font-weight-bold" style="font-weight: bold; font-size: 16px">
+                                        Pengajuan Disetujui</span>
                                 @endif
                             </td>
                             <td>

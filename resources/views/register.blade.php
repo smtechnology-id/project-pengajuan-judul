@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Login || Sistem Padat Langsing</title>
+    <title>register Page || Project Pengajuan Skripsi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Website Padat Langsing - Peduli Masalah Stunting" name="description" />
+    <meta content="Website Pengajuan Judul Skripsi" name="description" />
     <meta content="Smtehcbology.id" name="author" />
 
     <!-- App favicon -->
@@ -91,34 +91,18 @@
                                                             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                                         @enderror
                                                     </div>
+                                                    <div class="form-group mb-2">
+                                                        <label for="program_studi">Program Studi</label><br>
+                                                        <select id="program_studi" name="program_studi_id" class="form-control" required>
+                                                            @foreach ($program_studis as $program_studi)
+                                                                <option value="{{ $program_studi->id }}">{{ $program_studi->nama }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
 
                                                     <!-- Jurusan -->
-                                                    <div class="mb-3">
-                                                        <label for="jurusan" class="form-label">Jurusan</label>
-                                                        <input id="jurusan" type="text" class="form-control @error('jurusan') is-invalid @enderror" name="jurusan" value="{{ old('jurusan') }}" required>
-                                                        @error('jurusan')
-                                                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                                                        @enderror
-                                                    </div>
-
-                                                    <!-- Program Studi -->
-                                                    <div class="mb-3">
-                                                        <label for="program_studi" class="form-label">Program Studi</label>
-                                                        <input id="program_studi" type="text" class="form-control @error('program_studi') is-invalid @enderror" name="program_studi" value="{{ old('program_studi') }}" required>
-                                                        @error('program_studi')
-                                                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                                                        @enderror
-                                                    </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <!-- Nama Lengkap -->
-                                                    <div class="mb-3">
-                                                        <label for="name" class="form-label">Nama Lengkap</label>
-                                                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required>
-                                                        @error('name')
-                                                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                                                        @enderror
-                                                    </div>
 
                                                     <!-- Email -->
                                                     <div class="mb-3">
@@ -146,6 +130,7 @@
 
                                                     <div class="mb-0">
                                                         <button type="submit" class="btn btn-primary">Register</button>
+                                                        <a href="{{route('index')}}" class="btn btn-outline-primary">Login</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -166,13 +151,6 @@
     </div>
     <!-- end page -->
 
-    <footer class="footer footer-alt fw-medium">
-        <span class="text-dark">
-            <script>
-                document.write(new Date().getFullYear())
-            </script> © Velonic - Theme by Techzaa
-        </span>
-    </footer>
     <!-- Vendor js -->
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
 

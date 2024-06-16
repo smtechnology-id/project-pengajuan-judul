@@ -5,29 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BiodataMahasiswa extends Model
+class Kaprodi extends Model
 {
     use HasFactory;
-    protected $table = 'biodata_mahasiswa';
+    protected $table = 'kaprodi';
 
     protected $fillable = [
-        'user_id',
         'program_studi_id',
-        'nim',
+        'user_id',
         'nama',
-        'jenis_kelamin',
-        'no_hp',
+        'nip',
+        'jabatan',
     ];
 
-    // Definisikan relasi dengan model User
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    // Definisikan relasi dengan model ProgramStudi
+    // Define the relationship with ProgramStudi
     public function programStudi()
     {
         return $this->belongsTo(ProgramStudi::class, 'program_studi_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

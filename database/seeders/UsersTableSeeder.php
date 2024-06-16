@@ -27,28 +27,5 @@ class UsersTableSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        // Menambahkan user kaprodi
-        DB::table('users')->insert([
-            'name' => 'Kaprodi',
-            'email' => 'kaprodi@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('xEYnws6y'),
-            'role' => 'kaprodi',
-            'remember_token' => Str::random(10),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        // Menambahkan user mahasiswa
-        DB::table('users')->insert([
-            'name' => 'Mahasiswa',
-            'email' => 'mahasiswa@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('xEYnws6y'),
-            'role' => 'mahasiswa',
-            'remember_token' => Str::random(10),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
     }
 }

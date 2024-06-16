@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dosen;
+use App\Models\Jadwal;
 use App\Models\Pengajuan;
 use Illuminate\Http\Request;
+use App\Models\BiodataMahasiswa;
+use Illuminate\Support\Facades\Auth;
 
 class KaprodiController extends Controller
 {
     public function index()
     {
-        return view('kaprodi.dashboard');
+        $mahasiswa = BiodataMahasiswa::all()->count();
+        $dosen = Dosen::all()->count();
+        $pengajuan = Pengajuan::all()->count();
+        $jadwal = Jadwal::all()->count();
+        return view('admin.dashboard', compact('mahasiswa', 'dosen', 'pengajuan', 'jadwal'));
     }
     public function pengajuan()
     {
-        $pengajuan = Pengajuan::all();
+        $program_studi_id = Auth::user()->kaprodi->program_studi_id;
+        $pengajuan = Pengajuan::where('program_studi_id', $program_studi_id)->get();
         return view('kaprodi.pengajuan', compact('pengajuan'));
     }
     public function updateStatus(Request $request)

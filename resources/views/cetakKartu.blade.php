@@ -70,7 +70,6 @@
                             <span></span>
                         </div>
                     </button>
-                    
 
                     <!-- Topbar Search Form -->
                     <div class="app-search d-none d-lg-block">
@@ -79,6 +78,10 @@
                 </div>
 
                 <ul class="topbar-menu d-flex align-items-center gap-3">
+
+
+
+
                     <li class="dropdown">
                         <a class="nav-link dropdown-toggle arrow-none nav-user" data-bs-toggle="dropdown" href="#"
                             role="button" aria-haspopup="false" aria-expanded="false">
@@ -94,12 +97,12 @@
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated profile-dropdown">
                             <!-- item-->
                             @if (Auth::user()->role == 'mahasiswa')
-                            <a href="{{ route('mahasiswa.profile') }}" class="dropdown-item">
-                                <i class="ri-user-settings-fill fs-18 align-middle me-1"></i>
-                                <span>Profile</span>
-                            </a>
+                                <a href="{{ route('mahasiswa.profile') }}" class="dropdown-item">
+                                    <i class="ri-logout-box-line fs-18 align-middle me-1"></i>
+                                    <span>Profile</span>
+                                </a>
                             @endif
-                           
+
                             <a href="{{ route('logout') }}" class="dropdown-item">
                                 <i class="ri-logout-box-line fs-18 align-middle me-1"></i>
                                 <span>Logout</span>
@@ -121,7 +124,9 @@
                 <!--- Sidemenu -->
                 <ul class="side-nav">
 
-                    <li class="side-nav-title"><h3>Tugas Akhir</h3></li>
+                    <li class="side-nav-title">
+                        <h3>Tugas Akhir</h3>
+                    </li>
                     @if (Auth::user()->role == 'admin')
                         <li class="side-nav-item">
                             <a href="{{ route('admin.dashboard') }}" class="side-nav-link">
@@ -131,72 +136,72 @@
                         </li>
                         <li class="side-nav-item">
                             <a href="{{ route('admin.dosen') }}" class="side-nav-link">
-                                <i class=" ri-account-box-line"></i>
+                                <i class="ri-home-3-line"></i>
                                 <span> Data Dosen </span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{ route('admin.mahasiswa') }}" class="side-nav-link">
-                                <i class="ri-account-circle-line"></i>
+                                <i class="ri-home-3-line"></i>
                                 <span> Data Mahasiswa </span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{ route('admin.prodi') }}" class="side-nav-link">
-                                <i class="ri-function-fill"></i>
+                                <i class="ri-home-3-line"></i>
                                 <span> Data Program Studi </span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{ route('admin.kaprodi') }}" class="side-nav-link">
-                                <i class="ri-contacts-fill"></i>
+                                <i class="ri-home-3-line"></i>
                                 <span> Data Kaprodi </span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{ route('admin.pengajuan') }}" class="side-nav-link">
-                                <i class="ri-folder-add-line"></i>
+                                <i class="ri-home-3-line"></i>
                                 <span> Data Pengajuan </span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{ route('admin.jadwal') }}" class="side-nav-link">
-                                <i class="ri-checkbox-multiple-line"></i>
+                                <i class="ri-home-3-line"></i>
                                 <span> Data Jadwal </span>
                             </a>
                         </li>
                     @elseif (Auth::user()->role == 'kaprodi')
-                    <li class="side-nav-item">
-                        <a href="{{ route('kaprodi.dashboard') }}" class="side-nav-link">
-                            <i class="ri-home-3-line"></i>
-                            <span> Dashboard </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="{{ route('kaprodi.pengajuan') }}" class="side-nav-link">
-                            <i class="ri-folder-add-line"></i>
-                            <span> Data Pengajuan </span>
-                        </a>
-                    </li>
+                        <li class="side-nav-item">
+                            <a href="{{ route('kaprodi.dashboard') }}" class="side-nav-link">
+                                <i class="ri-home-3-line"></i>
+                                <span> Dashboard </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="{{ route('kaprodi.pengajuan') }}" class="side-nav-link">
+                                <i class="ri-home-3-line"></i>
+                                <span> Data Pengajuan </span>
+                            </a>
+                        </li>
                     @elseif (Auth::user()->role == 'mahasiswa')
-                    <li class="side-nav-item">
-                        <a href="{{ route('mahasiswa.dashboard') }}" class="side-nav-link">
-                            <i class="ri-home-3-line"></i>
-                            <span> Dashboard </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="{{ route('mahasiswa.pengajuan') }}" class="side-nav-link">
-                            <i class="ri-folder-add-line"></i>
-                            <span> Pengajuan </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="{{ route('mahasiswa.bimbingan') }}" class="side-nav-link">
-                            <i class="ri-parent-line"></i>
-                            <span> Bimbingan </span>
-                        </a>
-                    </li>
+                        <li class="side-nav-item">
+                            <a href="{{ route('mahasiswa.dashboard') }}" class="side-nav-link">
+                                <i class="ri-home-3-line"></i>
+                                <span> Dashboard </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="{{ route('mahasiswa.pengajuan') }}" class="side-nav-link">
+                                <i class="ri-home-3-line"></i>
+                                <span> Pengajuan </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="{{ route('mahasiswa.bimbingan') }}" class="side-nav-link">
+                                <i class="ri-home-3-line"></i>
+                                <span> Bimbingan </span>
+                            </a>
+                        </li>
                     @endif
 
 
@@ -218,44 +223,91 @@
             <div class="content">
 
                 <!-- Start Content-->
-                <div class="container-fluid">
-
-                    <!-- start page title -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="page-title-box">
-                                <div class="container-fluid mt-3">
-                                    <div class="card">
-                                        <div class="card-body py-2">
-                                            @if ($errors->any())
-                                                <div class="alert alert-danger">
-                                                    <ul>
-                                                        @foreach ($errors->all() as $error)
-                                                            <li>{{ $error }}</li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                            @endif
-                                            @if (session('success'))
-                                                <div class="alert alert-success">
-                                                    {{ session('success') }}
-                                                </div>
-                                            @endif
-                                            @if (session('error'))
-                                                <div class="alert alert-danger">
-                                                    {{ session('error') }}
-                                                </div>
-                                            @endif
-                                            @yield('content')
-                                        </div>
-                                    </div>
+                <div class="container">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr class="table-primary">
+                                                <td>No</td>
+                                                <td>Tanggal</td>
+                                                <td>Materi Bimbingan</td>
+                                                <td>Paraf Pembimbing 1</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $no = 1;
+                                            @endphp
+                                            @foreach ($bimbinganSatu as $data)
+                                                <tr>
+                                                    <td>{{$no}}</td>
+                                                    <td>{{$data->tanggal}}</td>
+                                                    <td>{{$data->materi}}</td>
+                                                    <td><br><br></td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-6">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr class="table-primary">
+                                                <td>No</td>
+                                                <td>Tanggal</td>
+                                                <td>Materi Bimbingan</td>
+                                                <td>Paraf Pembimbing 2</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $no = 1;
+                                            @endphp
+                                            @foreach ($bimbinganDua as $data)
+                                                <tr>
+                                                    <td>{{$no}}</td>
+                                                    <td>{{$data->tanggal}}</td>
+                                                    <td>{{$data->materi}}</td>
+                                                    <td><br><br></td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p>Keterangan</p>
+                                    <ul>
+                                        <li>Konsultasi Mahasiswa ke masing – masing pembimbing minimal 6 kali dan lebih optimal bila sampai 8 kali</li>
+                                        <li>Kartu konsultasi bimbingan harus sudah di serahkan ke admin jurusan sebelum mendaftar Sidang Akhir Skripsi</li>
+                                    </ul>
+                                </div>
+                                <div class="col-6">
+                                    <p>Samarinda, {{$tanggalNow}}</p>
+                                    <p>Kordinator Program Studi {{$pengajuan->programStudi->nama}}</p>
+                                    <br><br>
+                                    <p><u>{{$kaprodi->nama}}</u></p>
+                                    <p>NIP :: {{ $kaprodi->nip }}</p>
                                 </div>
                             </div>
                         </div>
+                        <div class="toolbar hidden-print">
+                            <div class="text-end">
+                                <div class="d-print-none mt-4">
+                                    <div class="text-center">
+                                        <a href="javascript:window.print()" class="btn btn-primary"><i
+                                                class="ri-printer-line"></i> Print</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
                     </div>
-                    <!-- end page title -->
-
-                </div> <!-- container -->
+                </div>
 
             </div> <!-- content -->
 
@@ -287,11 +339,7 @@
     <!-- App js -->
     <script src="{{ asset('assets/js/app.min.js') }}"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/datatables@1.10.18/media/js/jquery.dataTables.min.js"></script>
 
-    <script>
-        $('table').dataTable();
-    </script>
 </body>
 
 </html>

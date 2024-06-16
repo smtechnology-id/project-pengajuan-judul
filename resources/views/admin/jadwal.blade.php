@@ -4,7 +4,7 @@
         <h3>Data Jadwal</h3>
 
         <div class="table-responsive">
-            
+
             <br>
             <table class="table table-borderless">
                 <thead>
@@ -12,7 +12,7 @@
                         <th>No</th>
                         <th>Nama Mahasiswa</th>
                         <th>NIM</th>
-                        <th>Detail</th>
+                        <th>Waktu</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -25,9 +25,11 @@
                             <td>{{ $no }}</td>
                             <td>{{ $data->pengajuan->user->biodatamahasiswa->nama }}</td>
                             <td>{{ $data->pengajuan->user->biodatamahasiswa->nim }}</td>
-                            <td>{{ $data->pengajuan->judul }}</td>
+                            <td> {{ \Carbon\Carbon::parse($data->waktu)->translatedFormat('l, j F Y H:i') }}
+                            </td>
                             <td>
-                                <a href="{{ route('admin.detailJadwal', ['id' => $data->id]) }}" class="btn btn-primary btn-sm">Lihat Jadwal</a>
+                                <a href="{{ route('detailJadwal', ['id' => $data->id]) }}"
+                                    class="btn btn-primary btn-sm">Lihat Jadwal</a>
                             </td>
                         </tr>
                     @endforeach

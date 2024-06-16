@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Login || Sistem Padat Langsing</title>
+    <title>Login Page || Project Pengajuan Skripsi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Website Padat Langsing - Peduli Masalah Stunting" name="description" />
+    <meta content="Website Pengajuan Judul Skripsi" name="description" />
     <meta content="Smtehcbology.id" name="author" />
 
     <!-- App favicon -->
@@ -29,7 +29,7 @@
                     <div class="card overflow-hidden">
                         <div class="row g-0">
                             <div class="col-lg-6 d-none d-lg-block p-2">
-                                <img src="{{ asset('assets/images/Kejaksaan Agung.png') }}" alt=""
+                                <img src="{{ asset('assets/images/logo-politeknik.png') }}" alt=""
                                     class="img-fluid rounded h-100" style="object-fit: cover">
                             </div>
                             <div class="col-lg-6">
@@ -88,13 +88,6 @@
     </div>
     <!-- end page -->
 
-    <footer class="footer footer-alt fw-medium">
-        <span class="text-dark">
-            <script>
-                document.write(new Date().getFullYear())
-            </script> © Velonic - Theme by Techzaa
-        </span>
-    </footer>
     <!-- Vendor js -->
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
 

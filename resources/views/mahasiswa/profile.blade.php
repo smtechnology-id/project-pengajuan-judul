@@ -64,7 +64,7 @@
                                                         <th scope="row">Program Studi</th>
                                                         <td>
                                                             <a href="" class="ng-binding">
-                                                                {{ $biodata->program_studi }}
+                                                                {{ $biodata->programStudi->nama }}
                                                             </a>
                                                         </td>
                                                     </tr>
@@ -72,7 +72,7 @@
                                                         <th scope="row">jurusan</th>
                                                         <td>
                                                             <a href="" class="ng-binding">
-                                                                {{ $biodata->jurusan }}
+                                                                {{ $biodata->programStudi->jurusan }}
                                                             </a>
                                                         </td>
                                                     </tr>
@@ -125,17 +125,92 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h5>Text in a modal</h5>
-                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-                    <hr>
-                    <h5>Overflowing text to show scroll behavior</h5>
-                    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas
-                        eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue
-                        laoreet rutrum faucibus dolor auctor.</p>
-                    <p class="mb-0">Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-                        scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor
-                        fringilla.</p>
+                    <form method="POST" action="{{ route('mahasiswa.updateMahasiswa') }}">
+                        @csrf
+                        <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- NIM -->
+                                <div class="mb-3">
+                                    <label for="nim" class="form-label">NIM</label>
+                                    <input id="nim" type="text" class="form-control @error('nim') is-invalid @enderror" name="nim" value="{{ old('nim', Auth::user()->biodataMahasiswa->nim) }}" required>
+                                    @error('nim')
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+                    
+                                <!-- Nama -->
+                                <div class="mb-3">
+                                    <label for="nama" class="form-label">Nama</label>
+                                    <input id="nama" type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama', Auth::user()->biodataMahasiswa->nama) }}" required>
+                                    @error('nama')
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+                    
+                                <!-- Jenis Kelamin -->
+                                <div class="mb-3">
+                                    <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                    <select id="jenis_kelamin" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" required>
+                                        <option value="" disabled selected>Pilih Jenis Kelamin</option>
+                                        <option value="Laki-laki" {{ old('jenis_kelamin', Auth::user()->biodataMahasiswa->jenis_kelamin) == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                        <option value="Perempuan" {{ old('jenis_kelamin', Auth::user()->biodataMahasiswa->jenis_kelamin) == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                    </select>
+                                    @error('jenis_kelamin')
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+                    
+                                <!-- No HP -->
+                                <div class="mb-3">
+                                    <label for="no_hp" class="form-label">No HP</label>
+                                    <input id="no_hp" type="text" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp', Auth::user()->biodataMahasiswa->no_hp) }}" required>
+                                    @error('no_hp')
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+                    
+                                <div class="form-group mb-2">
+                                    <label for="program_studi">Program Studi</label>
+                                    <select id="program_studi" name="program_studi_id" class="form-control" required>
+                                        @foreach ($program_studis as $program_studi)
+                                            <option value="{{ $program_studi->id }}" {{ old('program_studi_id', Auth::user()->biodataMahasiswa->program_studi_id) == $program_studi->id ? 'selected' : '' }}>{{ $program_studi->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <!-- Email -->
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', Auth::user()->email) }}" required>
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+                    
+                                <!-- Password -->
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+                    
+                                <!-- Confirm Password -->
+                                <div class="mb-3">
+                                    <label for="password-confirm" class="form-label">Confirm Password</label>
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+                                </div>
+                    
+                                <div class="mb-0">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>

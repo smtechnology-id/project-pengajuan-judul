@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Jadwal;
+use App\Models\Bimbingan;
+use App\Models\Pengajuan;
+use App\Models\ProgramStudi;
 use Illuminate\Http\Request;
 use App\Models\BiodataMahasiswa;
+use App\Models\Kaprodi;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -65,51 +70,62 @@ class AuthController extends Controller
 
     public function register()
     {
-        return view('register');
+        $program_studis = ProgramStudi::all();
+        return view('register', compact('program_studis'));
     }
     public function registerPost(Request $request)
     {
-        // Validasi data yang dikirimkan dari form register
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'nim' => 'required|string|max:255|unique:biodata_mahasiswa',
+        $request->validate([
+            'nim' => 'required|string|max:50|unique:biodata_mahasiswa',
             'nama' => 'required|string|max:255',
-            'jenis_kelamin' => 'required|string|max:255',
-            'no_hp' => 'required|string|max:15',
-            'jurusan' => 'required|string|max:255',
-            'program_studi' => 'required|string|max:255',
+            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
+            'no_hp' => 'required|string|max:20',
+            'program_studi_id' => 'required|exists:program_studi,id',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
         ]);
-    
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-    
-        // Membuat user baru
+
+        // Create user
         $user = User::create([
-            'name' => $request->name,
+            'name' => $request->nama,
+            'role' => 'mahasiswa',
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'mahasiswa',
         ]);
-    
-        // Membuat biodata mahasiswa baru
-        BiodataMahasiswa::create([
+
+        // Create biodata mahasiswa
+        $mahasiswa = BiodataMahasiswa::create([
             'user_id' => $user->id,
+            'program_studi_id' => $request->program_studi_id,
             'nim' => $request->nim,
             'nama' => $request->nama,
             'jenis_kelamin' => $request->jenis_kelamin,
             'no_hp' => $request->no_hp,
-            'jurusan' => $request->jurusan,
-            'program_studi' => $request->program_studi,
         ]);
-    
-        // Login user setelah registrasi
+
+        // Redirect or do something after registration
         auth()->login($user);
-    
         // Redirect ke dashboard mahasiswa
         return redirect()->route('mahasiswa.dashboard');
     }
-    
+
+
+    public function detailJadwal($id)
+    {
+        $jadwal = Jadwal::where('pengajuan_id', $id)->first();
+        $pengajuan = Pengajuan::where('id', $jadwal->pengajuan_id)->first();
+        $user = User::where('id', $pengajuan->id_user)->first();
+        $biodata = BiodataMahasiswa::where('user_id', $user->id)->first();
+        return view('jadwal', compact('jadwal', 'pengajuan', 'user', 'biodata'));
+    }
+    public function cetakKartu($id)
+    {
+        $user_id = Auth::id();
+        $pengajuan = Pengajuan::where('id_user', $id)->first();
+        $bimbinganSatu = Bimbingan::where('user_id', $id)->where('pembimbing', '1')->get();
+        $bimbinganDua = Bimbingan::where('user_id', $id)->where('pembimbing', '2')->get();
+        $tanggalNow = now()->format('Y-m-d'); // Contoh format tanggal YYYY-MM-DD
+        $kaprodi = Kaprodi::where('program_studi_id', $pengajuan->program_studi_id)->first();
+        return view('cetakKartu', compact('pengajuan', 'bimbinganDua', 'bimbinganSatu', 'tanggalNow', 'kaprodi'));
+    }
 }

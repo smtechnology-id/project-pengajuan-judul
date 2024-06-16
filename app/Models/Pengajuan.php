@@ -14,27 +14,35 @@ class Pengajuan extends Model
         'id_user',
         'dosen_satu',
         'dosen_dua',
+        'program_studi_id',
         'judul',
         'deskripsi',
         'status',
         'catatan',
+        'jadwal',
     ];
 
-    // Relasi dengan tabel users
+    // Definisikan relasi dengan model User
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
     }
 
-    // Relasi dengan tabel dosens untuk dosen_satu
+    // Definisikan relasi dengan model Dosen untuk dosen satu
     public function dosenSatu()
     {
         return $this->belongsTo(Dosen::class, 'dosen_satu');
     }
 
-    // Relasi dengan tabel dosens untuk dosen_dua
+    // Definisikan relasi dengan model Dosen untuk dosen dua
     public function dosenDua()
     {
         return $this->belongsTo(Dosen::class, 'dosen_dua');
-    }   
+    }
+
+    // Definisikan relasi dengan model ProgramStudi
+    public function programStudi()
+    {
+        return $this->belongsTo(ProgramStudi::class, 'program_studi_id');
+    }
 }

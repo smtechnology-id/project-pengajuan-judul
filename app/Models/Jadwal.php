@@ -21,6 +21,12 @@ class Jadwal extends Model
         'status',
         'duration',
     ];
+    protected $dates = ['waktu'];
+
+    // Option 2: Using $casts (for newer Laravel versions)
+    protected $casts = [
+        'waktu' => 'datetime',
+    ];
 
     // Definisikan relasi dengan model Pengajuan
     public function pengajuan()
