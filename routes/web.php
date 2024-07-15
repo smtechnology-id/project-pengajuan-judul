@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     
     Route::get('/admin/mahasiswa', [AdminController::class, 'mahasiswa'])->name('admin.mahasiswa');
     Route::get('/admin/reset-password/{id}', [AdminController::class, 'resetPassword'])->name('admin.resetPassword');
+    Route::get('/admin/deleteMahasiswa/{id}', [AdminController::class, 'deleteMahasiswa'])->name('admin.deleteMahasiswa');
 
     Route::get('/admin/Pengajuan/', [AdminController::class, 'pengajuan'])->name('admin.pengajuan');
     Route::post('/admin/createJadwal/', [AdminController::class, 'createJadwal'])->name('admin.createJadwal');
@@ -64,8 +65,11 @@ Route::group(['middleware' => ['auth', 'role:kaprodi']], function () {
     // Routes for kaprodi
     Route::get('/kaprodi', [KaprodiController::class, 'index'])->name('kaprodi.dashboard');
     Route::get('/kaprodi/pengajuan', [KaprodiController::class, 'pengajuan'])->name('kaprodi.pengajuan');
+    Route::get('/kaprodi/jadwal', [KaprodiController::class, 'jadwal'])->name('kaprodi.jadwal');
 
     Route::post('/kaprodi/updateStatus', [KaprodiController::class, 'updateStatus'])->name('kaprodi.updateStatus');
+    Route::get('/kaprodi/dosen', [KaprodiController::class, 'dosen'])->name('kaprodi.dosen');
+
     // Add more kaprodi routes here
 });
 

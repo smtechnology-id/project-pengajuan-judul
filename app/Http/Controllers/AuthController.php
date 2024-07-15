@@ -126,6 +126,6 @@ class AuthController extends Controller
         $bimbinganDua = Bimbingan::where('user_id', $id)->where('pembimbing', '2')->get();
         $tanggalNow = now()->format('Y-m-d'); // Contoh format tanggal YYYY-MM-DD
         $kaprodi = Kaprodi::where('program_studi_id', $pengajuan->program_studi_id)->first();
-        return view('cetakKartu', compact('pengajuan', 'bimbinganDua', 'bimbinganSatu', 'tanggalNow', 'kaprodi'));
+        return view('cetakKartu', compact('user_id','pengajuan', 'bimbinganDua', 'bimbinganSatu', 'tanggalNow', 'kaprodi'));
     }
 }

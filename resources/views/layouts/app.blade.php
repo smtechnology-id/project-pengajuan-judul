@@ -70,7 +70,7 @@
                             <span></span>
                         </div>
                     </button>
-                    
+
 
                     <!-- Topbar Search Form -->
                     <div class="app-search d-none d-lg-block">
@@ -94,12 +94,12 @@
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated profile-dropdown">
                             <!-- item-->
                             @if (Auth::user()->role == 'mahasiswa')
-                            <a href="{{ route('mahasiswa.profile') }}" class="dropdown-item">
-                                <i class="ri-user-settings-fill fs-18 align-middle me-1"></i>
-                                <span>Profile</span>
-                            </a>
+                                <a href="{{ route('mahasiswa.profile') }}" class="dropdown-item">
+                                    <i class="ri-user-settings-fill fs-18 align-middle me-1"></i>
+                                    <span>Profile</span>
+                                </a>
                             @endif
-                           
+
                             <a href="{{ route('logout') }}" class="dropdown-item">
                                 <i class="ri-logout-box-line fs-18 align-middle me-1"></i>
                                 <span>Logout</span>
@@ -121,7 +121,9 @@
                 <!--- Sidemenu -->
                 <ul class="side-nav">
 
-                    <li class="side-nav-title"><h3>Tugas Akhir</h3></li>
+                    <li class="side-nav-title">
+                        <h3>Tugas Akhir</h3>
+                    </li>
                     @if (Auth::user()->role == 'admin')
                         <li class="side-nav-item">
                             <a href="{{ route('admin.dashboard') }}" class="side-nav-link">
@@ -166,37 +168,49 @@
                             </a>
                         </li>
                     @elseif (Auth::user()->role == 'kaprodi')
-                    <li class="side-nav-item">
-                        <a href="{{ route('kaprodi.dashboard') }}" class="side-nav-link">
-                            <i class="ri-home-3-line"></i>
-                            <span> Dashboard </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="{{ route('kaprodi.pengajuan') }}" class="side-nav-link">
-                            <i class="ri-folder-add-line"></i>
-                            <span> Data Pengajuan </span>
-                        </a>
-                    </li>
+                        <li class="side-nav-item">
+                            <a href="{{ route('kaprodi.dashboard') }}" class="side-nav-link">
+                                <i class="ri-home-3-line"></i>
+                                <span> Dashboard </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="{{ route('kaprodi.dosen') }}" class="side-nav-link">
+                                <i class=" ri-account-box-line"></i>
+                                <span> Data Dosen </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="{{ route('kaprodi.pengajuan') }}" class="side-nav-link">
+                                <i class="ri-folder-add-line"></i>
+                                <span> Data Pengajuan </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="{{ route('kaprodi.jadwal') }}" class="side-nav-link">
+                                <i class="ri-checkbox-multiple-line"></i>
+                                <span> Data Jadwal </span>
+                            </a>
+                        </li>
                     @elseif (Auth::user()->role == 'mahasiswa')
-                    <li class="side-nav-item">
-                        <a href="{{ route('mahasiswa.dashboard') }}" class="side-nav-link">
-                            <i class="ri-home-3-line"></i>
-                            <span> Dashboard </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="{{ route('mahasiswa.pengajuan') }}" class="side-nav-link">
-                            <i class="ri-folder-add-line"></i>
-                            <span> Pengajuan </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="{{ route('mahasiswa.bimbingan') }}" class="side-nav-link">
-                            <i class="ri-parent-line"></i>
-                            <span> Bimbingan </span>
-                        </a>
-                    </li>
+                        <li class="side-nav-item">
+                            <a href="{{ route('mahasiswa.dashboard') }}" class="side-nav-link">
+                                <i class="ri-home-3-line"></i>
+                                <span> Dashboard </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="{{ route('mahasiswa.pengajuan') }}" class="side-nav-link">
+                                <i class="ri-folder-add-line"></i>
+                                <span> Pengajuan </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="{{ route('mahasiswa.bimbingan') }}" class="side-nav-link">
+                                <i class="ri-parent-line"></i>
+                                <span> Bimbingan </span>
+                            </a>
+                        </li>
                     @endif
 
 
@@ -266,7 +280,7 @@
                         <div class="col-12 text-center">
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> Developed With Love By SMTechnology.id</b>
+                            </script></b>
                         </div>
                     </div>
                 </div>

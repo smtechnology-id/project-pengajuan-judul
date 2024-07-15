@@ -17,7 +17,7 @@ class KaprodiController extends Controller
         $dosen = Dosen::all()->count();
         $pengajuan = Pengajuan::all()->count();
         $jadwal = Jadwal::all()->count();
-        return view('admin.dashboard', compact('mahasiswa', 'dosen', 'pengajuan', 'jadwal'));
+        return view('kaprodi.dashboard', compact('mahasiswa', 'dosen', 'pengajuan', 'jadwal'));
     }
     public function pengajuan()
     {
@@ -56,4 +56,15 @@ class KaprodiController extends Controller
             return redirect()->back()->with('error', 'Gagal memperbarui status pengajuan: ' . $e->getMessage());
         }
     }
+    public function jadwal()
+    {
+        $jadwal = Jadwal::all();
+        return view('kaprodi.jadwal', compact('jadwal'));
+    }
+    public function dosen()
+    {
+        $dosen = Dosen::all();
+        return view('kaprodi.dosen', compact('dosen'));
+    }
+
 }

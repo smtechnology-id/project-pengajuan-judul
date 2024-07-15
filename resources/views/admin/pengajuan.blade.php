@@ -14,6 +14,7 @@
                         <th>Status</th>
                         <th>Status Penjadwalan</th>
                         <th>Detail</th>
+                        <th>Tahun Pengajuan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -23,7 +24,7 @@
                     @endphp
                     @foreach ($pengajuan as $data)
                         <tr>
-                            <td>{{ $no }}</td>
+                            <td>{{ $no++ }}</td>
                             <td>{{ $data->user->biodatamahasiswa->nama }}</td>
                             <td>{{ $data->user->biodatamahasiswa->nim }}</td>
                             <td>
@@ -59,8 +60,8 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">
-                                                <table class="table table-borderless">
+                                            <div class="modal-body" style="font-size: 16px">
+                                                <table class="table table-borderless" >
                                                     <tr>
                                                         <td>Nama</td>
                                                         <td>:</td>
@@ -79,12 +80,22 @@
                                                     <tr>
                                                         <td>Prodi</td>
                                                         <td>:</td>
-                                                        <td>{{ $data->user->biodatamahasiswa->program_studi }}</td>
+                                                        <td>{{ $data->programStudi->nama }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Jurusan</td>
                                                         <td>:</td>
-                                                        <td>{{ $data->user->biodatamahasiswa->jurusan }}</td>
+                                                        <td>{{ $data->programStudi->jurusan }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dosen Pembimbing 1</td>
+                                                        <td>:</td>
+                                                        <td>{{ $data->dosenSatu->nama }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dosen Pembimbing 2</td>
+                                                        <td>:</td>
+                                                        <td>{{ $data->dosenDua->nama }}</td>
                                                     </tr>
                                                 </table>
                                                 <hr>
@@ -96,7 +107,7 @@
                                                         <td>{{ $data->judul }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Judul</td>
+                                                        <td>Deksripsi</td>
                                                         <td>{{ $data->deskripsi }}</td>
                                                     </tr>
                                                     <tr>
@@ -113,6 +124,8 @@
                                         </div><!-- /.modal-content -->
                                     </div><!-- /.modal-dialog -->
                                 </div><!-- /.modal -->
+                            </td>
+                            <td>{{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('Y') }}
                             </td>
                             <td>
                                 @if ($data->jadwal == '1')

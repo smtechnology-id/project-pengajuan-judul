@@ -31,7 +31,7 @@ class AdminController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:255',
-            'nip' => 'required|string|max:50|unique:dosen', // unique:dosen menandakan validasi unik di tabel dosen
+            'nip' => 'required|string|max:20|unique:dosen', // unique:dosen menandakan validasi unik di tabel dosen
             'jabatan' => 'required|string|max:255',
         ]);
 
@@ -258,7 +258,8 @@ class AdminController extends Controller
     public function jadwal()
     {
         $jadwal = Jadwal::all();
-        return view('admin.jadwal', compact('jadwal'));
+        $dosen = Dosen::all();
+        return view('admin.jadwal', compact('jadwal', 'dosen'));
     }
 
     public function mahasiswa()
@@ -273,5 +274,21 @@ class AdminController extends Controller
         $user->save();
 
         return redirect()->back()->with('success', 'Password has been reset to 123456');
+    }
+    public function deleteMahasiswa($id)
+    {
+        // Find the student by user_id
+        $mahasiswa = BiodataMahasiswa::where('user_id', $id)->first();
+        $user = User::where('id', $id)->first();
+
+        if ($mahasiswa) {
+            // Delete the student record
+            $mahasiswa->delete();
+            $user->delete();
+
+            return redirect()->back()->with('success', 'Student has been deleted successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Student not found.');
+        }
     }
 }

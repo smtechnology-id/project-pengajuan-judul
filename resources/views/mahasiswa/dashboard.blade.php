@@ -16,6 +16,8 @@
                             <span>0</span>
                         @endif
                     </h2>
+                    <a href="{{route('mahasiswa.pengajuan')}}" class="btn btn-light">Detail</a>
+
                 </div>
             </div>
         </div> <!-- end col-->
@@ -28,6 +30,8 @@
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Jumlah Bimbingan</h6>
                     <h2 class="my-2">{{$bimbingan}}</h2>
+                    <a href="{{route('mahasiswa.bimbingan')}}" class="btn btn-light">Detail</a>
+
                 </div>
             </div>
     </div>

@@ -22,6 +22,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/datatables@1.10.18/media/css/jquery.dataTables.min.css">
 
     <script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
+    <style>
+        table{
+            margin: 0;
+            padding: 0;
+        }
+        table tr{
+            margin: 0;
+            padding: 0;
+        }
+        table tr td {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -136,37 +150,37 @@
                         </li>
                         <li class="side-nav-item">
                             <a href="{{ route('admin.dosen') }}" class="side-nav-link">
-                                <i class="ri-home-3-line"></i>
+                                <i class=" ri-account-box-line"></i>
                                 <span> Data Dosen </span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{ route('admin.mahasiswa') }}" class="side-nav-link">
-                                <i class="ri-home-3-line"></i>
+                                <i class="ri-account-circle-line"></i>
                                 <span> Data Mahasiswa </span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{ route('admin.prodi') }}" class="side-nav-link">
-                                <i class="ri-home-3-line"></i>
+                                <i class="ri-function-fill"></i>
                                 <span> Data Program Studi </span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{ route('admin.kaprodi') }}" class="side-nav-link">
-                                <i class="ri-home-3-line"></i>
+                                <i class="ri-contacts-fill"></i>
                                 <span> Data Kaprodi </span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{ route('admin.pengajuan') }}" class="side-nav-link">
-                                <i class="ri-home-3-line"></i>
+                                <i class="ri-folder-add-line"></i>
                                 <span> Data Pengajuan </span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{ route('admin.jadwal') }}" class="side-nav-link">
-                                <i class="ri-home-3-line"></i>
+                                <i class="ri-checkbox-multiple-line"></i>
                                 <span> Data Jadwal </span>
                             </a>
                         </li>
@@ -178,9 +192,21 @@
                             </a>
                         </li>
                         <li class="side-nav-item">
+                            <a href="{{ route('kaprodi.dosen') }}" class="side-nav-link">
+                                <i class=" ri-account-box-line"></i>
+                                <span> Data Dosen </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
                             <a href="{{ route('kaprodi.pengajuan') }}" class="side-nav-link">
-                                <i class="ri-home-3-line"></i>
+                                <i class="ri-folder-add-line"></i>
                                 <span> Data Pengajuan </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="{{ route('kaprodi.jadwal') }}" class="side-nav-link">
+                                <i class="ri-checkbox-multiple-line"></i>
+                                <span> Data Jadwal </span>
                             </a>
                         </li>
                     @elseif (Auth::user()->role == 'mahasiswa')
@@ -192,13 +218,13 @@
                         </li>
                         <li class="side-nav-item">
                             <a href="{{ route('mahasiswa.pengajuan') }}" class="side-nav-link">
-                                <i class="ri-home-3-line"></i>
+                                <i class="ri-folder-add-line"></i>
                                 <span> Pengajuan </span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{ route('mahasiswa.bimbingan') }}" class="side-nav-link">
-                                <i class="ri-home-3-line"></i>
+                                <i class="ri-parent-line"></i>
                                 <span> Bimbingan </span>
                             </a>
                         </li>
@@ -230,13 +256,13 @@
                             <div class="row">
                                 <div class="col-3 d-flex flex-column align-items-center justify-content-center"
                                     style="border: 1px solid #000;">
-                                    <img src="{{ asset('assets/images/logo-politeknik.png') }}" alt="" style="width: 150px">
+                                    <img src="{{ asset('assets/images/polnes hitam.png') }}" alt="" style="width: 100px">
                                 </div>
                                 <div class="col-9  p-2 d-flex flex-column align-items-center justify-content-center"
                                     style="border: 1px solid #000; border-left: none">
                                     <h5>KEMENTERIAN PENDIDIKAN DAN KEBUDAYAAN</h5>
                                     <h5>POLITEKNIK NEGERI SAMARINDA</h5>
-                                    <p class="text-center">Jl. DR.Ciptomangunkusumo Kampus Gunung Lipan Samarinda 75131
+                                    <p class="text-center" style="font-size: 10px">Jl. DR.Ciptomangunkusumo Kampus Gunung Lipan Samarinda 75131
                                         <br> Telp. 0541-260588, 260553, 262018 Fax. 0541-260355 <br>
                                         website: www.polnes.ac.id
                                     </p>
@@ -251,15 +277,15 @@
                                 </div>
                             </div>
                             <div class="row py-3">
-                                <p>Pada hari ini {{ $biodata->nama }}. tangggal <td> {{ $jadwal->waktu->format('d') }}
+                                <p style="">Pada hari ini {{ $biodata->nama }}. tangggal <td> {{ $jadwal->waktu->format('d') }}
 
                                         bulan {{ $jadwal->waktu->format('m') }} tahun
                                         {{ $jadwal->waktu->format('y') }}
                                         telah dilaksanakan Seminar Proposal Skripsi mahasiswa</p>
-                                <br><br>
+
                                 <p>Pelaksanaan seminar Proposal Skripsi dari mahasiswa :</p>
-                                <table class="table table-borderless">
-                                    <tr>
+                                <table style="margin: 0; padding: 0;">
+                                    <tr style="margin: 0">
                                         <td>Nama</td>
                                         <td>:</td>
                                         <td>{{ $biodata->nama }}</td>
@@ -292,7 +318,6 @@
                                         <td>{{ $jadwal->waktu->format('H:i') }} WITA</td>
                                     </tr>
                                 </table>
-                                <br><br>
                                 <p>Setelah melihat, mendengar dan memperhatikan jalannya Seminar Proposal Skripsi, maka
                                     Tim Dosen Pembimbing dan Dosen Penguji memutuskan bahwa Proposal Skripsi mahasiswa
                                     tersebut dinyatakan :</p>
@@ -350,7 +375,7 @@
                                 </p>
                                 <ul>
                                     <li>Form ini setelah diisi dapat dikembalikan ke Koordinator</li>
-                                    <li>Tanda *  coret salah satu.</li>
+                                    <li>Tanda * coret salah satu.</li>
                                 </ul>
                                 
                             </div>

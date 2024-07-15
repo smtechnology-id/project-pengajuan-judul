@@ -10,6 +10,7 @@
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Data Dosen</h6>
                     <h2 class="my-2">{{ $dosen }}</h2>
+                    <a href="{{route('admin.dosen')}}" class="btn btn-light">Detail</a>
                 </div>
             </div>
         </div> <!-- end col-->
@@ -21,6 +22,8 @@
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Data Mahasiswa</h6>
                     <h2 class="my-2">{{ $mahasiswa }}</h2>
+                    <a href="{{route('admin.mahasiswa')}}" class="btn btn-light">Detail</a>
+
                 </div>
             </div>
         </div> <!-- end col-->
@@ -33,6 +36,8 @@
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Data Pengajuan</h6>
                     <h2 class="my-2">{{ $pengajuan }}</h2>
+                    <a href="{{route('admin.pengajuan')}}" class="btn btn-light">Detail</a>
+
                 </div>
             </div>
         </div> <!-- end col-->
@@ -44,6 +49,8 @@
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Data Jadwal</h6>
                     <h2 class="my-2">{{ $jadwal }}</h2>
+                    <a href="{{route('admin.jadwal')}}" class="btn btn-light">Detail</a>
+
                     
                 </div>
             </div>

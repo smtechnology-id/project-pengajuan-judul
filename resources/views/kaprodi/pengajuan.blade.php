@@ -41,8 +41,8 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">
-                                                <table class="table table-borderless">
+                                            <div class="modal-body" style="font-size: 16px">
+                                                <table class="table table-borderless" >
                                                     <tr>
                                                         <td>Nama</td>
                                                         <td>:</td>
@@ -61,12 +61,22 @@
                                                     <tr>
                                                         <td>Prodi</td>
                                                         <td>:</td>
-                                                        <td>{{ $data->user->biodatamahasiswa->programStudi->nama }}</td>
+                                                        <td>{{ $data->programStudi->nama }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Jurusan</td>
                                                         <td>:</td>
-                                                        <td>{{ $data->user->biodatamahasiswa->programStudi->jurusan }}</td>
+                                                        <td>{{ $data->programStudi->jurusan }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dosen Pembimbing 1</td>
+                                                        <td>:</td>
+                                                        <td>{{ $data->dosenSatu->nama }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dosen Pembimbing 2</td>
+                                                        <td>:</td>
+                                                        <td>{{ $data->dosenDua->nama }}</td>
                                                     </tr>
                                                 </table>
                                                 <hr>
@@ -78,7 +88,7 @@
                                                         <td>{{ $data->judul }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Judul</td>
+                                                        <td>Deksripsi</td>
                                                         <td>{{ $data->deskripsi }}</td>
                                                     </tr>
                                                     <tr>

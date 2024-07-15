@@ -32,8 +32,8 @@
                                 <div class="d-flex flex-column h-100">
 
                                     <div class="p-4 my-auto">
-                                        <h4 class="fs-20">Sign In</h4>
-                                        <p class="text-muted mb-3">Enter your email address and password to access
+                                        <h4 class="fs-20">Form Register</h4>
+                                        <p class="text-muted mb-3">Enter your Biodata to access
                                             account.
                                         </p>
                                         @if (session('success'))

@@ -32,6 +32,7 @@
                             <td>{{ $data->no_hp }}</td>
                             <td>
                                 <a href="{{route('admin.resetPassword', ['id' => $data->user_id])}}" class="btn btn-primary">Reset Password</a>
+                                <a href="{{route('admin.deleteMahasiswa', ['id' => $data->user_id])}}" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     @endforeach

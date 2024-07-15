@@ -294,6 +294,38 @@
                                     <p>NIP :: {{ $kaprodi->nip }}</p>
                                 </div>
                             </div>
+                            <br><br><br>
+                            <div class="row">
+                                <div class="col-6">
+                                    <table class="table table-borderless" style="border: 1px solid #000">
+                                        <tr>
+                                            <td>Nama</td>
+                                            <td>:</td>
+                                            <td>{{$pengajuan->user->biodataMahasiswa->nama}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>NIM</td>
+                                            <td>:</td>
+                                            <td>{{$pengajuan->user->biodataMahasiswa->nim}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dosen Pembimbing 1</td>
+                                            <td>:</td>
+                                            <td>{{$pengajuan->dosenSatu->nama}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dosen Pembimbing 2</td>
+                                            <td>:</td>
+                                            <td>{{$pengajuan->dosenDua->nama}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Judul</td>
+                                            <td>:</td>
+                                            <td>{{$pengajuan->judul}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                         <div class="toolbar hidden-print">
                             <div class="text-end">
